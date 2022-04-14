@@ -9,4 +9,4 @@ It works in conjunction with Haskell's [`visualisables`] library.
 ## Installation
 
 - Download `interactive-visuals-0.0.1.vsix` from this repository
-- Run the `Extensions: Install from VSIX` command in VS Code
+- Run the `Extensions: Install from VSIX` command in VS Code **Insiders**
