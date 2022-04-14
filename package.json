@@ -1,0 +1,57 @@
+{
+	"name": "interactive-visuals",
+	"displayName": "Interactive-visuals",
+	"description": "Interactive-visuals - inline in the code editor",
+	"version": "0.0.1",
+	"publisher": "lollobaldo",
+	"private": false,
+	"preview": true,
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.47.0"
+	},
+	"categories": [
+		"Visualization", "Education", "Testing"
+	],
+	"activationEvents": [
+		"onCommand:visualise.identifier",
+		"onCommand:visualise.function",
+		"onCommand:visualise.randomfunction"
+	],
+	"main": "./out/extension.js",
+	"enabledApiProposals": ["editorInsets"],
+	"contributes": {
+		"commands": [
+			{
+				"command": "visualise.identifier",
+				"title": "Graph current variable",
+				"category": "Visualiser"
+			},
+			{
+				"command": "visualise.function",
+				"title": "Graph current function",
+				"category": "Visualiser"
+			},
+			{
+				"command": "visualise.randomfunction",
+				"title": "Graph current function (generate sample input)",
+				"category": "Visualiser"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint . --ext .ts,.tsx",
+		"watch": "tsc -w -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^12.12.0",
+		"@types/vscode": "^1.47.0",
+		"@types/vscode-webview": "^1.57.0",
+		"@typescript-eslint/eslint-plugin": "^4.16.0",
+		"@typescript-eslint/parser": "^4.16.0",
+		"eslint": "^7.21.0",
+		"typescript": "^4.4.3"
+	}
+}

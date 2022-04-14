@@ -1,0 +1,14 @@
+-- :set +s
+-- :set -v
+-- :set -XOverloadedStrings
+
+-- SAMPLE: -- :set -iC:/Users/lollo/Desktop/UNI/HP/demo
+-- :set -i/afs/inf.ed.ac.uk/user/s18/s1853050/UNI2/HP/demo
+
+-- :set -package unicode-show
+-- change default printer to show unicode characters
+-- import qualified Text.Show.Unicode
+-- :set -interactive-print=Text.Show.Unicode.uprint
+
+:set prompt "###DONE###"
+:unset +s

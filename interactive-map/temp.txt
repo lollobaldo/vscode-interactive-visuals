@@ -1,0 +1,14 @@
+[
+  (
+    SrcSpanInfo {
+      srcInfoSpan = SrcSpan "play.hs" 10 1 10 3, srcInfoPoints = [
+        ]
+      }
+    ,"l2")
+  ,(
+    SrcSpanInfo {
+      srcInfoSpan = SrcSpan "play.hs" 17 1 17 5, srcInfoPoints = [
+        ]
+      }
+    ,"main")
+  ]

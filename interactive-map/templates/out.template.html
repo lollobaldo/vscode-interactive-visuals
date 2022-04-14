@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    html {
+      height: 200px;
+      width: 800px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body.vscode-light svg {
+      color: white;
+    }
+
+    /* body.vscode-dark svg .elem {
+      stroke: white;
+    }
+
+    body.vscode-dark svg g {
+      stroke: white;
+    } */
+    
+    body.vscode-dark svg text {
+      fill: white;
+    }
+
+    /* Set a style for all buttons */
+    button {
+      background-color: #04AA6D;
+      color: black;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    button:hover {
+      opacity: 1;
+    }
+
+    /* Float cancel and delete buttons and add an equal width */
+    .create-btn, .update-btn, .delete-btn {
+      float: left;
+      width: 25%;
+    }
+
+    /* .create-before-btn { background-color: #04AA6D; } */
+    .create-btn { background-color: #04AA6D; }
+    .update-btn { background-color: #bae1ff; }
+    .delete-btn { background-color: #f66; }
+
+    body.vscode-dark button {
+      filter: invert(100%);
+    }
+
+    /* Add padding and center-align text to the container */
+    .container {
+      padding: 16px;
+      text-align: center;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      /* background-color: #474e5d; */
+      /* padding-top: 50px; */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+    }
+
+    /* Style the horizontal ruler */
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    /* The Modal Close Button (x) */
+    .close, .refresh {
+      position: absolute;
+      right: 35px;
+      top: 15px;
+      font-size: 40px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .refresh {
+      right: 70px;
+    }
+
+    .close:hover,
+    .close:focus,
+    .refresh:hover,
+    .refresh:focus {
+      /* color: #f44336; */
+      cursor: pointer;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    /* Change styles for cancel button and delete button on extra small screens */
+    @media screen and (max-width: 300px) {
+      .create-btn, .update-btn, .delete-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="modal" class="modal">
+    <span class="refresh" title="Refresh Modal" id="refreshButton">↻</span>
+    <span class="close" title="Close Modal" id="closeButton">×</span>
+    <form class="modal-content" action="/action_page.php">
+      <div class="container">
+        <h1>Update the value of</h1>
+        <input type="text" value="" id="editInput" />
+        <div class="clearfix">
+          <button type="button" class="create-btn" id="createButton">Create</button>
+          <!-- <button type="button" class="create-after-btn" id="createAfterButton">Create After</button> -->
+          <button type="button" class="update-btn" id="updateButton">Update</button>
+          <button type="button" class="delete-btn" id="deleteButton">Remove</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- ### ADD HTML AFTER HERE ### -->
+  <!-- <script>const ids = [1,2,3]</script> -->
+  <script>
+    const vscode = acquireVsCodeApi() || undefined;
+    const modal = document.getElementById('modal');
+    const refreshButton = document.getElementById('refreshButton');
+    const closeButton = document.getElementById('closeButton');
+
+    refreshButton.addEventListener('click', event => vscode.postMessage({ refresh: true }));
+    closeButton.addEventListener('click', event => modal.style.display = 'none');
+
+    const editInput = document.getElementById('editInput');
+    const createButton = document.getElementById('createButton');
+    const updateButton = document.getElementById('updateButton');
+    const deleteButton = document.getElementById('deleteButton');
+    const opTypes = {'createButton': 'Create', 'updateButton': 'Update', 'deleteButton': 'Delete'};
+    
+    const els = document.querySelectorAll('.clickable');
+    console.log("HERE", els);
+    els.forEach(el => {
+      console.log(el.id);
+      el.addEventListener('click', event => {
+        const value = el.textContent.trim();
+        editInput.value = value;
+        modal.style.display = 'block';
+        const cb = event => {
+          console.log(event);
+          const pld = { id: el.id, key: el.id, value: editInput.value, opType: opTypes[event.target.id] };
+          console.log(pld);
+          vscode.postMessage(pld);
+        };
+        createButton.addEventListener('click', cb);
+        updateButton.addEventListener('click', cb);
+        deleteButton.addEventListener('click', cb);
+      })
+    });
+  </script>
+</body>
+
+</html >

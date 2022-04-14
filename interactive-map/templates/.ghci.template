@@ -1,0 +1,11 @@
+-- :set +s
+-- :set -v
+-- :set -XOverloadedStrings
+
+-- SAMPLE: -- :set -iC:/Users/lollo/Desktop/UNI/HP/demo
+:set -i###REPLACE WITH DIRECTORY OF PROJECT###
+
+-- :set -package unicode-show
+-- change default printer to show unicode characters
+-- import qualified Text.Show.Unicode
+-- :set -interactive-print=Text.Show.Unicode.uprint
