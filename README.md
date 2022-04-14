@@ -11,7 +11,6 @@ It is not intended as a production quality extension.
 
 ## Demo
 
-![demo](demo.gif)
 
 ## VS Code API
 
